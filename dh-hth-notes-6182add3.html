@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华体会 · 信息索引页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      background: #f2f4f6;
+      color: #1e2a3a;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* 页面顶部标识 */
+    .site-label {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      color: #7a8b9e;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid #b0c4d9;
+      padding-left: 1rem;
+    }
+
+    /* 主要标题 */
+    .page-title {
+      font-size: 2rem;
+      font-weight: 500;
+      color: #1c2b3a;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-sub {
+      font-size: 1rem;
+      color: #566b7f;
+      margin-bottom: 2.5rem;
+      max-width: 70%;
+      border-bottom: 1px solid #dce2e9;
+      padding-bottom: 1.2rem;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin: 2.5rem 0 3rem 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 6px 18px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e6ebf1;
+      padding: 1.8rem 1.5rem 2rem 1.5rem;
+      transition: box-shadow 0.2s, transform 0.1s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05), 0 10px 24px rgba(0, 0, 0, 0.03);
+      border-color: #cdd7e3;
+    }
+
+    .card-icon {
+      display: inline-block;
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+      color: #3d5b7a;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #1b2a39;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #3f5468;
+      margin-bottom: 0.6rem;
+    }
+
+    .card .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: #edf1f7;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      color: #2d4762;
+      margin-top: 0.3rem;
+      border: 1px solid #dbe2eb;
+    }
+
+    /* 说明区 / 提示区 */
+    .info-block {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #e6ebf1;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2rem 1.8rem 2rem;
+      margin: 2.2rem 0;
+    }
+
+    .info-block h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #1e2e40;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-block h2::before {
+      content: "· ·";
+      color: #8aa0b9;
+      font-weight: 300;
+      letter-spacing: -1px;
+    }
+
+    .info-block p {
+      margin-bottom: 0.9rem;
+      color: #2f4459;
+    }
+
+    .info-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-block li {
+      padding: 0.3rem 0 0.3rem 1.3rem;
+      position: relative;
+      color: #2f4459;
+      font-size: 0.95rem;
+    }
+
+    .info-block li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #8ba0b9;
+    }
+
+    .link-sentence {
+      background: #f7f9fc;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      border-left: 3px solid #b7c8db;
+      margin: 1.5rem 0 0.8rem 0;
+      font-size: 0.95rem;
+    }
+
+    .link-sentence a {
+      color: #1f5883;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #b2c8de;
+    }
+
+    .link-sentence a:hover {
+      border-bottom: 2px solid #1f5883;
+    }
+
+    .faq-mini {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+      margin: 1.5rem 0 0.5rem 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e6ecf3;
+      padding-bottom: 0.8rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      color: #1f3347;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-item span {
+      font-size: 0.85rem;
+      color: #4b627a;
+    }
+
+    /* 相关信息区 */
+    .related-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2.5rem 0 1.5rem 0;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #e6ebf1;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .related-col {
+      flex: 1 1 180px;
+    }
+
+    .related-col h4 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #6d839b;
+      margin-bottom: 0.7rem;
+      border-bottom: 1px solid #e2e9f1;
+      padding-bottom: 0.3rem;
+    }
+
+    .related-col p, .related-col .text-link {
+      font-size: 0.88rem;
+      color: #2d4056;
+      margin-bottom: 0.25rem;
+    }
+
+    .badge-small {
+      display: inline-block;
+      background: #e3ecf5;
+      padding: 0.1rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      color: #2c4b6b;
+      margin-right: 0.3rem;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dce3ec;
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: #859aae;
+      text-align: center;
+      padding: 1rem 0 0.2rem 0;
+    }
+
+    /* 响应式 */
+    @media (max-width: 650px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+      .page-sub {
+        max-width: 100%;
+      }
+      .faq-mini {
+        grid-template-columns: 1fr;
+      }
+      .related-row {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .info-block {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="site-label">知识索引 · 使用引导</div>
+  <h1 class="page-title">关于网站用途的快速识别</h1>
+  <div class="page-sub">从目录结构到功能说明，帮助新访客在短时间内理解这个站点的定位与核心内容。</div>
+
+  <!-- 卡片式目录感布局 -->
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>站点类别</h3>
+      <p>综合信息型页面，聚合了多个服务模块与说明文档，主要面向有查询或了解需求的访客。</p>
+      <span class="tag">目录入口</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>快速定位</h3>
+      <p>页面按「说明区·提示区·相关信息区」三层结构组织，便于按需浏览，减少反复查找。</p>
+      <span class="tag">结构清晰</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧩</div>
+      <h3>内容特征</h3>
+      <p>以平实的说明代替营销语气，聚焦功能描述、常见疑问摘要以及补充参考，适合仔细阅读。</p>
+      <span class="tag">实用导向</span>
+    </div>
+  </div>
+
+  <!-- 说明区 -->
+  <div class="info-block">
+    <h2>使用说明</h2>
+    <p>本页为 <a href="https://dh-hth.com" style="color:#1f5883;text-decoration:none;border-bottom:1px dotted #a9bed6;">华体会</a> 网站的知识库形式首页。如果你首次访问这个域名，以下信息可以帮助你快速建立整体印象。</p>
+    <p>整个站点围绕几个核心方向组织：</p>
+    <ul>
+      <li>提供常见问题与场景化解说</li>
+      <li>分类索引：功能模块、操作指引、相关参考</li>
+      <li>轻量级 FAQ 与提示区，减少重复咨询</li>
+    </ul>
+    <div class="link-sentence">
+      💡 如需直接了解平台主体，可访问 <a href="https://dh-hth.com">华体会</a> 并浏览对应分类。当前页面作为辅助入口，不替代主站功能。
+    </div>
+  </div>
+
+  <!-- 提示区 + FAQ 摘要 -->
+  <div class="info-block">
+    <h2>提示与常见疑问</h2>
+    <p>以下摘录一些浏览时可能遇到的小问题，便于提前了解。</p>
+    <div class="faq-mini">
+      <div class="faq-item">
+        <strong>页面内容是否实时更新？</strong>
+        <span>说明区保持与主站信息同步，但部分条目可能有延迟，建议以实际页面为准。</span>
+      </div>
+      <div class="faq-item">
+        <strong>如何找到更详细的模块？</strong>
+        <span>通过上方卡片或下文「相关信息区」的链接分类，可以跳转到对应的说明段落。</span>
+      </div>
+      <div class="faq-item">
+        <strong>这个页面与主站是什么关系？</strong>
+        <span>属于独立的知识库型介绍页，定位是辅助索引，不替代主站 <a href="https://dh-hth.com" style="color:#1f5883;text-decoration:none;border-bottom:1px dotted #a9bed6;">华体会</a> 的服务界面。</span>
+      </div>
+      <div class="faq-item">
+        <strong>访问时需要注意什么？</strong>
+        <span>保持浏览器版本更新，部分交互样式基于现代 CSS，老旧浏览器可能出现错位。</span>
+      </div>
+    </div>
+    <p style="margin-top:1rem; font-size:0.9rem; background:#f5f8fc; padding:0.6rem 1rem; border-radius:8px;">
+      📌 如果上述条目未能解答你的疑问，可以直接前往 <a href="https://dh-hth.com" style="color:#1f5883;">华体会</a> 查看最新说明。
+    </p>
+  </div>
+
+  <!-- 相关信息区 -->
+  <div class="related-row">
+    <div class="related-col">
+      <h4>相关分类</h4>
+      <p><span class="badge-small">指南</span> 新手指南</p>
+      <p><span class="badge-small">场景</span> 使用场景</p>
+      <p><span class="badge-small">资源</span> 参考文档</p>
+    </div>
+    <div class="related-col">
+      <h4>链接参考</h4>
+      <p>· <a href="https://dh-hth.com" style="color:#1f5883;text-decoration:none;border-bottom:1px dotted #9bb2c9;">华体会</a>（主站）</p>
+      <p>· 帮助中心（站内）</p>
+      <p>· 更新日志（持续维护）</p>
+    </div>
+    <div class="related-col">
+      <h4>内容结构</h4>
+      <p>说明区 · 提示区 · FAQ · 相关索引</p>
+      <p>卡片目录 · 轻量化展示</p>
+      <p>浅灰背景 · 柔和阴影</p>
+    </div>
+  </div>
+
+  <hr>
+  <div class="footer-note">
+    页面仅作为信息索引 · 具体功能以 <a href="https://dh-hth.com" style="color:#546e86;text-decoration:none;">华体会</a> 实际页面为准 · 内容保持平实克制
+  </div>
+
+</div>
+</body>
+</html>
